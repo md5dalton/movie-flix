@@ -28,7 +28,7 @@ export default ({ id, title, poster_path, vote_average, release_date }: Movie ) 
                 />
                 <Text className="text-xs text-white">{Math.round(vote_average)}</Text>
             </View>
-            <Text className="text-xs text-light-300 font-medium mt-1">{release_date.split("-").shift()}</Text>
+            <Text className="text-xs text-light-300 font-medium mt-1">{release_date?.split("-").shift()}</Text>
 
         </TouchableOpacity>
     </Link>
