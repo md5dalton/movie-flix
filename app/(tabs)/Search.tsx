@@ -3,14 +3,25 @@ import SearchBar from "@/components/SearchBar"
 import { icons } from "@/constants/icons"
 import { images } from "@/constants/images"
 import { useSearchMoviesQuery } from "@/service/api"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { ActivityIndicator, FlatList, Image, Text, View } from "react-native"
 
 export default () => {
 
     const [ term, setTerm ] = useState("")
+    const [debouncedTerm, setDebouncedTerm] = useState(term)
 
-    const { data, isLoading, error } = useSearchMoviesQuery(term, { skip: term === "" })
+    useEffect(() => {
+        const handler = setTimeout(() => {
+            setDebouncedTerm(term)
+        }, 500)
+
+        return () => {
+            clearTimeout(handler)
+        }
+    }, [term])
+
+    const { data, isLoading, error } = useSearchMoviesQuery(debouncedTerm, { skip: !debouncedTerm })
     
     return (
         <View className="bg-primary flex-1">
@@ -42,6 +53,13 @@ export default () => {
                                     marginBottom: 10
                                 }}
                                 className="mt-2 pb-32"
+                                ListEmptyComponent={
+                                    !isLoading && !error ? (
+                                        <View className="mt-10 px-5">
+                                            <Text className="text-center text-gray-500">{debouncedTerm.trim() ? "No movies found" : "Search for a movie"}</Text>
+                                        </View>
+                                    ) : null
+                                }   
                             />
                         )
                     }
