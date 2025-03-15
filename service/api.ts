@@ -9,7 +9,6 @@ const TMDB_CONFIG = {
     }
 }
 
-
 export const moviesApi = createApi({
     baseQuery: fetchBaseQuery({ 
         baseUrl: TMDB_CONFIG.BASE_URL,
@@ -23,7 +22,10 @@ export const moviesApi = createApi({
         fetchMovies: builder.query({
             query: () => "/discover/movie?sort_by=popularity.desc",
         }),
+        searchMovies: builder.query({
+            query: term => `/search/movie?query=${encodeURIComponent(term)}`,
+        }),
     }),
 })
 
-export const { useFetchMoviesQuery } = moviesApi
+export const { useFetchMoviesQuery, useSearchMoviesQuery } = moviesApi
