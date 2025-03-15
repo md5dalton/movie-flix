@@ -1,12 +1,6 @@
 import { icons } from "@/constants/icons"
 import { Link } from "expo-router"
-import { Image, Text, TextInput, TouchableOpacity, View } from "react-native"
-
-interface Props
-{
-    onPress: () => void
-    placeHolder: string
-}
+import { Image, Text, TouchableOpacity, View } from "react-native"
 
 export default ({ id, title, poster_path, vote_average, release_date }: Movie ) => (
     <Link href={`/movie/${id}`} asChild>
@@ -29,7 +23,6 @@ export default ({ id, title, poster_path, vote_average, release_date }: Movie ) 
                 <Text className="text-xs text-white">{Math.round(vote_average)}</Text>
             </View>
             <Text className="text-xs text-light-300 font-medium mt-1">{release_date?.split("-").shift()}</Text>
-
         </TouchableOpacity>
     </Link>
 )
