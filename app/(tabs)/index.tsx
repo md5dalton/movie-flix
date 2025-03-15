@@ -35,7 +35,7 @@ export default () => {
                     ) : (
                         <View>
                             <View className="flex-1 mt-5">
-                                <SearchBar onPress={() => router.push("/Search")} placeHolder="Search for movies" />
+                                <SearchBar onPress={() => router.push("/Search")} onChangeText={() => {}} placeHolder="Search for movies" />
                             </View>
                             <Text className="text-lg text-white font-bold mt-5 mb-3">Latest Movies</Text>
                             <FlatList
