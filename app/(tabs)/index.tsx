@@ -11,7 +11,6 @@ export default () => {
     const router = useRouter()
 
     const { data, isLoading, error } = useFetchMoviesQuery(0)
-    
     // console.log(data)
     
     return (
@@ -31,7 +30,7 @@ export default () => {
                             className="mt-10 self-center"
                         />
                     ) : error ? (
-                        <Text>Error: {Error?.toString()}</Text>
+                        <Text>Error: {error?.data?.status_message}</Text>
                     ) : (
                         <View>
                             <View className="flex-1 mt-5">
