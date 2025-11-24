@@ -13,7 +13,7 @@ export default ({
         error: FetchBaseQueryError 
         media: any[]
     }) => (
-    <View className="px-5 py-2 bg-red-400">
+    <View className="px-5 py-2">
         {
             isLoading ? (
                 <ActivityIndicator
