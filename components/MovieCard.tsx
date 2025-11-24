@@ -1,28 +1,26 @@
-import { icons } from "@/constants/icons"
 import { Link } from "expo-router"
 import { Image, Text, TouchableOpacity, View } from "react-native"
 
-export default ({ id, title, poster_path, vote_average, release_date }: Movie ) => (
+export default ({ id, title, poster, vote }: any ) => (
     <Link href={`/movie/${id}`} asChild>
-        <TouchableOpacity className="w-[32%]">
-            <Image
-                source={{ 
-                    uri: poster_path ? 
-                        `https://image.tmdb.org/t/p/w500${poster_path}` :
-                        "https://placehold.co/600x400/1a1a1a/ffffff.png"
-                }}
-                className="w-full h-52 rounded-lg"
-                resizeMode="cover"
-            />
-            <Text numberOfLines={1} className="text-sm font-bold text-white mt-2">{title}</Text>
-            <View className="flex-row items-center justify-start gap-x-1">
-                <Image
-                    source={icons.star}
-                    className="size-4"
-                />
-                <Text className="text-xs text-white">{Math.round(vote_average)}</Text>
+        <TouchableOpacity>
+            <View className="w-40">
+                <View className="flex-row items-center justify-start gap-x-1">
+                    <Image
+                        source={{ 
+                            uri: poster
+                        }}
+                        className="w-full h-60 rounded-lg"
+                        resizeMode="cover"
+                    />
+                    <Text className={`
+                        text-xs text-white font-bold
+                        absolute bottom-2 left-2 px-1
+                        ${vote >= 7 ? "bg-accent" : vote >= 5 ? "bg-amber-600" : "bg-red-500" }
+                        `}>{vote.toFixed(1)}</Text>
+                </View>
+                <Text numberOfLines={1} className="text-sm font-bold text-white mt-2">{title}</Text>
             </View>
-            <Text className="text-xs text-light-300 font-medium mt-1">{release_date?.split("-").shift()}</Text>
         </TouchableOpacity>
     </Link>
 )
