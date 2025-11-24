@@ -1,31 +1,30 @@
+import { MediaType } from "@/types/type"
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
-
-const TMDB_CONFIG = {
-    BASE_URL: "https://api.themoviedb.org/3",
-    API_KEY: process.env.EXPO_PUBLIC_TMDB_API_KEY,
-    headers: {
-        accept: "application/json",
-        Authorization: `Bearer ${process.env.EXPO_PUBLIC_TMDB_API_TOKEN}`,
-    }
-}
 
 export const moviesApi = createApi({
     baseQuery: fetchBaseQuery({ 
-        baseUrl: TMDB_CONFIG.BASE_URL,
+        baseUrl: "http://192.168.1.100:3001/api",
         prepareHeaders: headers => {
             headers.set("accept", "application/json")
-            headers.set("Authorization", `Bearer ${process.env.EXPO_PUBLIC_TMDB_API_TOKEN}`)
             return headers
         }
     }),
     endpoints: (builder) => ({
-        fetchMovies: builder.query({
-            query: () => "/discover/movie?sort_by=popularity.desc",
-        }),
         searchMovies: builder.query({
             query: term => `/search/movie?query=${encodeURIComponent(term)}`,
+        }),
+        latestMedia: builder.query({
+            query: () => "/feed/latest",
+        }),
+        popular: builder.query({
+            query: (type: MediaType) => `/feed/popular/${type}`,
         }),
     }),
 })
 
-export const { useFetchMoviesQuery, useSearchMoviesQuery } = moviesApi
+export const {
+    useSearchMoviesQuery,
+    usePopularQuery,
+    useLatestMediaQuery,
+
+} = moviesApi
