@@ -21,7 +21,7 @@ export default () => {
             <ScrollView
                 className="flex-1"
                 showsHorizontalScrollIndicator={false}
-                contentContainerStyle={{ minHeight: "100%", paddingBottom: 100 }}
+                contentContainerStyle={{ minHeight: "100%", paddingBottom: 120 }}
             >
                 <View className="px-5">
                     <Image source={icons.logo} className="w-12 h-10 mt-20 mb-5 mx-auto" />
