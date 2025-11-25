@@ -1,6 +1,5 @@
 import MovieCard from "@/components/MovieCard"
 import { ActivityIndicator, FlatList, Text, View } from "react-native"
-import { FetchBaseQueryError } from "@reduxjs/toolkit/query"
 
 export default ({
         title,
@@ -10,7 +9,7 @@ export default ({
     }: {
         title: string
         isLoading: Boolean
-        error: FetchBaseQueryError 
+        error: any 
         media: any[]
     }) => (
     <View className="px-5 py-2">
