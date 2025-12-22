@@ -4,10 +4,11 @@ import { icons } from "@/constants/icons"
 import { images } from "@/constants/images"
 import { useLatestMediaQuery } from "@/service/api"
 import { useRouter } from "expo-router"
-import { ActivityIndicator, FlatList, Image, ScrollView, Text, View } from "react-native"
+import { Image, ScrollView, View } from "react-native"
 import MediaSection from "@/components/MediaSection"
 import Trending from "../../components/Trending"
 import { MediaType } from "@/types/type"
+import { SafeAreaView } from "react-native-safe-area-context"
 
 export default () => {
 
@@ -16,7 +17,7 @@ export default () => {
     const { data, isLoading, error } = useLatestMediaQuery(0)
     
     return (
-        <View className="flex-1 bg-primary">
+        <SafeAreaView className="flex-1 bg-primary">
             <Image source={images.bg} className="absolute w-full z-0" />
             <ScrollView
                 className="flex-1"
@@ -52,6 +53,6 @@ export default () => {
                     />
                 </View>
             </ScrollView>
-        </View>
+        </SafeAreaView>
     )
 }
