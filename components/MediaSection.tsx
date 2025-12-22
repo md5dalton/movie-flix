@@ -1,5 +1,6 @@
 import MovieCard from "@/components/MovieCard"
-import { ActivityIndicator, FlatList, Text, View } from "react-native"
+import { ActivityIndicator, Text, View } from "react-native"
+import { FlashList } from "@shopify/flash-list"
 
 export default ({
         title,
@@ -25,12 +26,12 @@ export default ({
             ) : (
                 <View className="pb-2">
                     <Text className="text-lg text-white font-bold py-4">{title}</Text>
-                    <FlatList
+                    <FlashList
                         data={media}
                         horizontal
                         keyExtractor={item => item.id}
                         renderItem={({ item }) => <MovieCard {...item} />}
-                        contentContainerClassName="justify-start gap-4"
+                        contentContainerClassName="justify-start gap-x-4 space-x-2"
                         showsHorizontalScrollIndicator={false}
                     />
                 </View>
