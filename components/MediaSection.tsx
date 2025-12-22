@@ -31,7 +31,7 @@ export default ({
                         horizontal
                         keyExtractor={item => item.id}
                         renderItem={({ item }) => <MovieCard {...item} />}
-                        contentContainerClassName="justify-start gap-x-4 space-x-2"
+                        contentContainerClassName="justify-start gap-x-4"
                         showsHorizontalScrollIndicator={false}
                     />
                 </View>
