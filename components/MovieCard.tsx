@@ -3,7 +3,7 @@ import { Image, Text, TouchableOpacity, View } from "react-native"
 
 export default ({ id, title, poster, vote }: any ) => (
     <Link href={`/movie/${id}`} asChild>
-        <TouchableOpacity className="space-x-2">
+        <TouchableOpacity>
             <View className="w-40">
                 <View className="flex-row items-center justify-start gap-x-1">
                     <Image
